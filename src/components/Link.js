@@ -1,7 +1,7 @@
 import React from 'react';
+import { gql, useMutation } from '@apollo/client';
 import { AUTH_TOKEN, LINKS_PER_PAGE } from '../constants';
 import { timeDifferenceForDate } from '../utils';
-import { useMutation, gql } from '@apollo/client';
 import { FEED_QUERY } from './LinkList';
 
 const VOTE_MUTATION = gql`
@@ -9,7 +9,6 @@ const VOTE_MUTATION = gql`
     vote(linkId: $linkId) {
       id
       link {
-        id
         votes {
           id
           user {
@@ -38,7 +37,12 @@ const Link = (props) => {
     },
     update(cache, { data: { vote } }) {
       const { feed } = cache.readQuery({
-        query: FEED_QUERY
+        query: FEED_QUERY,
+        variables: {
+          take,
+          skip,
+          orderBy
+        }
       });
 
       const updatedLinks = feed.links.map((feedLink) => {
@@ -57,11 +61,15 @@ const Link = (props) => {
           feed: {
             links: updatedLinks
           }
+        },
+        variables: {
+          take,
+          skip,
+          orderBy
         }
       });
     }
   });
-
   return (
     <div className="flex mt2 items-start">
       <div className="flex items-center">

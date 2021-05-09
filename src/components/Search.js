@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import Link from './Link';
-import { useLazyQuery } from '@apollo/client';
 
 const FEED_SEARCH_QUERY = gql`
   query FeedSearchQuery($filter: String!) {
