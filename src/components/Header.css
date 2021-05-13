@@ -3,16 +3,10 @@
   font-weight: bold;
 }
 
-.ml {
-  font-size: 50px;
+.ml1 {
+  font-size: 39px;
   position: relative;
   top: 20px;
   left: 20px;
-}
-
-.ml6 {
-  font-size: 30px;
-  position: relative;
-  top: 30px;
-  left: -40px;
+  margin-bottom: 18px;
 }
